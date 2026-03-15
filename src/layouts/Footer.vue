@@ -13,6 +13,8 @@ footer{
     bottom: 0;
     padding: 2rem;
     border: 1px solid;
+    background: #FFFFFF;
+    z-index: 100;
 }
 
 </style>
