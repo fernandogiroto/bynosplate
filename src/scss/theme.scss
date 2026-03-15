@@ -1,0 +1,69 @@
+@use '@/scss/mixings.scss';
+@use '@/scss/effects.scss';
+@use 'sass:map';
+
+// RESET STYLES
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  touch-action: none;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  @include mixings.scrollbar-none();
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  @include mixings.flexbox(column, initial, initial);
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  overflow-y: scroll;
+  @include mixings.scrollbar-none;
+}
+
+
+// CONTENT
+a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+// COMPOSABLES
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
