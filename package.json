@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@primeuix/themes": "^2.0.3",
+    "axios": "^1.13.6",
     "pinia": "^3.0.4",
+    "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
     "vue": "^3.5.28",
     "vue-router": "^5.0.2",
     "vue3-carousel": "^0.17.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.10.13",
     "@vitejs/plugin-vue": "^6.0.4",
@@ -26,6 +29,7 @@
     "@vue/tsconfig": "^0.8.1",
     "npm-run-all2": "^8.0.4",
     "sass": "^1.97.3",
+    "tailwindcss": "^4.2.2",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-vue-devtools": "^8.0.6",
