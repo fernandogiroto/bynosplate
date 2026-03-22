@@ -70,14 +70,13 @@
 
 .intro {
   @include mixings.flexbox(column, initial, center);
-  height: 100%;
   position: relative;
   overflow: hidden;
   &__content {
     @include mixings.flexbox(column, flex-end, center);
     padding: 1.5rem;
     width: 100%;
-    height: 18rem;
+    height: 13rem;
     text-align: center;
     color: white;
     position: relative;
@@ -90,14 +89,14 @@
     }
     &--label {
       font-family: fonts.$font-inter;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: .3em;
       opacity: 0.8;
       animation-delay: 0.2s; 
     }
     &--title {
-      font-size: 3rem;
+      font-size: 2.5rem;
       line-height: 3rem;
       font-weight: 700;
       font-family: fonts.$font-playfair;
