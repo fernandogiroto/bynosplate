@@ -20,14 +20,19 @@ import Footer from '@/layouts/Footer.vue'
 
 const route = useRoute()
 const showFooter = ref(false)
+let footerTimer: ReturnType<typeof setTimeout> | null = null
 
 watch(
   () => route.name,
   (name) => {
-    if (name === 'intro') {
+    if (footerTimer) {
+      clearTimeout(footerTimer)
+      footerTimer = null
+    }
+    if (name === 'intro' || name === null) {
       showFooter.value = false
     } else {
-      setTimeout(() => {
+      footerTimer = setTimeout(() => {
         showFooter.value = true
       }, 1000)
     }

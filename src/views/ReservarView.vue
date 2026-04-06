@@ -5,5 +5,5 @@
 </template>
 
 <style lang="scss">
-.page { padding: 1rem; }
+
 </style>

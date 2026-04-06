@@ -1,19 +1,19 @@
 <template>
   <div class="page">
-    <div class="featured-menu">
-      <span class="featured-menu__subtitle">Destaques</span>
-      <span class="featured-menu__title">Os Mais Pedidos</span>
+    <div class="menu">
+      <span class="menu__subtitle">Destaques</span>
+      <span class="menu__title">Os Mais Pedidos</span>
       <Carousel v-bind="carouselConfig">
         <Slide v-for="(card, index) in cards" :key="index">
           <Card class="card-carousel">
             <template #header>
-                <img class="card-carousel__image" alt="user header" src="/img/background.jpg" />
+                <img class="card-carousel__image" alt="user header" src="/img/tapioca.png" />
             </template>
-            <template #title>Advanced Card</template>
+            <template #title>Tapioca com Queijo</template>
             <template #subtitle>Card subtitle</template>
             <template #content>
                 <p class="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 </p>
             </template>
             <template #footer>
@@ -23,9 +23,42 @@
                 </div>
             </template>
           </Card>
-
         </Slide>
       </Carousel>
+    </div>
+    <div class="menu">
+      <span class="menu__subtitle">Cardápio</span>
+      <span class="menu__title">Nosso Menu</span>
+      <Tabs value="0">
+          <TabList>
+              <Tab value="0" as="div" class="flex items-center gap-2">
+                  <span class="font-bold whitespace-nowrap">Amy Elsner</span>
+              </Tab>
+              <Tab value="1" as="div" class="flex items-center gap-2">
+                  <span class="font-bold whitespace-nowrap">Onyama Limba</span>
+              </Tab>
+              <Tab v-slot="slotProps" value="2" asChild>
+                  <div :class="['flex items-center gap-2', slotProps.class]" @click="slotProps.onClick" v-bind="slotProps.a11yAttrs">
+                      <span class="font-bold whitespace-nowrap">Ioni Bowcher</span>
+                  </div>
+              </Tab>
+          </TabList>
+          <TabPanels>
+              <TabPanel value="0" as="p" class="m-0">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              </TabPanel>
+              <TabPanel value="1" as="p" class="m-0">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+              </TabPanel>
+              <TabPanel v-slot="slotProps" value="2" asChild>
+                  <div v-show="slotProps.active" :class="slotProps.class" v-bind="slotProps.a11yAttrs">
+                      <p class="m-0">
+                          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
+                      </p>
+                  </div>
+              </TabPanel>
+          </TabPanels>
+      </Tabs>
     </div>
   </div>
 </template>
@@ -35,6 +68,12 @@
   import 'vue3-carousel/carousel.css'
   import { Carousel, Slide } from 'vue3-carousel'
   import Card from 'primevue/card'
+
+  import Tabs from 'primevue/tabs';
+  import TabList from 'primevue/tablist';
+  import Tab from 'primevue/tab';
+  import TabPanels from 'primevue/tabpanels';
+  import TabPanel from 'primevue/tabpanel';
 
   import { useRouter } from 'vue-router'
   const router = useRouter()
@@ -73,17 +112,20 @@
     height: 100%;
     &__image {
       width: 100%;
-      height: auto;
+      height: 160px;
       object-fit: cover;
+      border-radius: 8px 8px 0 0;
     }
   }
 
   .page {
-    padding: 1rem;
-
+    @include mixings.flexbox(column, initial, initial);
+    gap: 2rem;
+    padding: 2rem 1rem;
+    margin-bottom: 5rem;
   }
 
-  .featured-menu {
+  .menu {
     @include mixings.flexbox(column, initial, initial);
     &__subtitle {
       font-size: 0.875rem;
