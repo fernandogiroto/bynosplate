@@ -32,15 +32,13 @@
       <Tabs value="0">
           <TabList>
               <Tab value="0" as="div" class="flex items-center gap-2">
-                  <span class="font-bold whitespace-nowrap">Amy Elsner</span>
+                  <span class="font-bold whitespace-nowrap">Pratos Principais</span>
               </Tab>
               <Tab value="1" as="div" class="flex items-center gap-2">
-                  <span class="font-bold whitespace-nowrap">Onyama Limba</span>
+                  <span class="font-bold whitespace-nowrap">Hamburguers</span>
               </Tab>
-              <Tab v-slot="slotProps" value="2" asChild>
-                  <div :class="['flex items-center gap-2', slotProps.class]" @click="slotProps.onClick" v-bind="slotProps.a11yAttrs">
-                      <span class="font-bold whitespace-nowrap">Ioni Bowcher</span>
-                  </div>
+              <Tab value="3" as="div" class="flex items-center gap-2">
+                  <span class="font-bold whitespace-nowrap">Saladas</span>
               </Tab>
           </TabList>
           <TabPanels>
@@ -50,12 +48,8 @@
               <TabPanel value="1" as="p" class="m-0">
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
               </TabPanel>
-              <TabPanel v-slot="slotProps" value="2" asChild>
-                  <div v-show="slotProps.active" :class="slotProps.class" v-bind="slotProps.a11yAttrs">
-                      <p class="m-0">
-                          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
-                      </p>
-                  </div>
+              <TabPanel value="3" as="p" class="m-0">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
               </TabPanel>
           </TabPanels>
       </Tabs>
