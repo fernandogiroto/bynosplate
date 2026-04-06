@@ -19,6 +19,11 @@ export default defineConfig({
       '/api': {
         target: 'https://bynosplates.fabriciorocha.com',
         changeOrigin: true,
+        headers: {
+          Accept: 'application/json',
+          Origin: 'https://bynosplates.fabriciorocha.com',
+          Referer: 'https://bynosplates.fabriciorocha.com/',
+        },
       },
     },
   },

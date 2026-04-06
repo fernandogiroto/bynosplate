@@ -1,22 +1,41 @@
 <template>
-  <Header v-if="route.name == 'menu'" />
+  <Header />
   <router-view v-slot="{ Component }">
     <main>
-      <transition name="fade" mode="out-in">
+      <transition :name="'fade'" mode="out-in">
         <component :is="Component" :key="Component" />
       </transition>
     </main>
   </router-view>
-  <Footer v-if="route.name === 'menu'" />
+  <Transition name="slide-up">
+    <Footer v-if="showFooter" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Header from '@/layouts/Header.vue'
 import Footer from '@/layouts/Footer.vue'
+
 const route = useRoute()
+const showFooter = ref(false)
+
+watch(
+  () => route.name,
+  (name) => {
+    if (name === 'intro') {
+      showFooter.value = false
+    } else {
+      setTimeout(() => {
+        showFooter.value = true
+      }, 1000)
+    }
+  },
+  { immediate: true }
+)
 </script>
 
-<style>
-@import '@/scss/theme.scss';
+<style lang="scss">
+  @use '@/scss/theme.scss';
 </style>

@@ -1,11 +1,7 @@
 <template>
   <div class="intro">
-    <div class="intro__content">
-      <span class="intro__content--label">{{ restaurant?.description ?? 'Ristorante & Bar' }}</span>
-      <span class="intro__content--title">{{ restaurant?.name ?? 'Bella Vista' }}</span>
-    </div>
     <div class="intro-menu">
-      <Button class="intro-menu__button" label="Menu do Dia"  icon="pi pi-star" variant="outlined" />
+      <Button class="intro-menu__button" label="Menu do Dia"  icon="pi pi-star" variant="outlined" @click="router.push('/menu')" />
       <Button class="intro-menu__button" label="Carta" icon="pi pi-book" variant="outlined"  />
       <Button class="intro-menu__button" label="Vinhos" icon="pi pi-book" variant="outlined"  />
       <Button class="intro-menu__button" label="Reservar" icon="pi pi-calendar" variant="outlined"   />
@@ -25,7 +21,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script setup lang="ts">
@@ -34,7 +29,8 @@
   import Card from 'primevue/card';
 
   import { ref, onMounted } from 'vue'
-  import { api, type Restaurant } from '@/server/api'
+  import { getRestaurant } from '@/services/restaurant.service'
+  import type { Restaurant } from '@/interfaces/restaurants'
 
   import { useRouter } from 'vue-router'
   const router = useRouter()
@@ -43,16 +39,12 @@
 
   onMounted(async () => {
     try {
-      restaurant.value = await api.getRestaurant()
+      restaurant.value = await getRestaurant()
       console.log('Restaurant data loaded', restaurant.value)
     } catch (e) {
       console.error('Failed to load restaurant data', e)
     }
   })
-
-  function goTo(path: string) {
-    router.push(path)
-  }
 
   const cards = ref([
     {title: 'WIFI', subtitle: 'BellaVista_Guest', description: 'vista2026', icon: 'pi pi-wifi'},
@@ -69,52 +61,6 @@
 @use '@/scss/fonts' as fonts;
 
 .intro {
-  @include mixings.flexbox(column, initial, center);
-  position: relative;
-  overflow: hidden;
-  &__content {
-    @include mixings.flexbox(column, flex-end, center);
-    padding: 1.5rem;
-    width: 100%;
-    height: 13rem;
-    text-align: center;
-    color: white;
-    position: relative;
-    z-index: 10;
-    &--label,
-    &--title {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s ease forwards;
-    }
-    &--label {
-      font-family: fonts.$font-inter;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: .3em;
-      opacity: 0.8;
-      animation-delay: 0.2s; 
-    }
-    &--title {
-      font-size: 2.5rem;
-      line-height: 3rem;
-      font-weight: 700;
-      font-family: fonts.$font-playfair;
-      animation-delay: 0.4s; 
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgb(0 0 0 / 31%), rgb(0 0 0 / 28%)), url(../img/background.jpg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      filter: brightness(0.9);
-      z-index: -2;
-    }
-  }
   .intro-menu {
     @include mixings.flexbox(column, flex-start, center);
     gap: 0.6rem;
@@ -193,12 +139,6 @@
       font-size: 0.9rem;
       color: var(--p-neutral-600);
       font-size: 0.8rem;
-    }
-  }
-  @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 }
